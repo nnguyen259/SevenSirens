@@ -1,6 +1,4 @@
 import os
-import shutil
-import time
 from io import BytesIO
 from typing import Optional
 
@@ -14,14 +12,19 @@ def unpackfile(file: str, out_directory: Optional[str]) -> None:
         raise FileNotFoundError("Please specify a valid file to unpack.")
 
     with open(file, "rb") as infile:
-        _unpack(infile, out_directory)
+        _unpack(
+            infile, out_directory, f"{os.path.basename(file).rsplit('.', 1)[0]}.txt"
+        )
 
 
-def _unpack(data: BytesIO, out_directory: Optional[str]) -> None:
+def _unpack(
+    data: BytesIO, out_directory: Optional[str], file_list_name="file_list.txt"
+) -> None:
     data_offset = int.from_bytes(data.read(4), "little")
     file_count = int.from_bytes(data.read(4), "little")
+    file_names = list()
     current_offset = data.tell()
-    if out_directory:
+    if not os.path.exists(out_directory):
         os.makedirs(out_directory, exist_ok=True)
 
     for _ in range(file_count):
@@ -34,6 +37,7 @@ def _unpack(data: BytesIO, out_directory: Optional[str]) -> None:
             file_name += data.read(8)
         file_name = file_name.replace(b"?", b"").replace(b"\0", b"")
         file_name = file_name.decode("utf-8").replace(":", "/")
+        file_names.append(file_name)
         if out_directory:
             file_name = os.path.join(out_directory, file_name)
         current_offset = data.tell()
@@ -46,39 +50,43 @@ def _unpack(data: BytesIO, out_directory: Optional[str]) -> None:
         with open(file_name, "wb") as output:
             output.write(file_content)
 
+    with open(os.path.join(out_directory, file_list_name), "w") as name_file:
+        name_file.write("\n".join(file_names))
 
-def pack(directory: str) -> bytes:
+
+def pack(directory: str, file_list="file_list.txt") -> bytes:
     directory = os.path.normpath(directory)
+    with open(os.path.join(directory, file_list)) as name_file:
+        file_names = name_file.read().splitlines()
     output = BytesIO()
     file_infos = list()
     file_name_size = 0
-    for root, _, files in os.walk(directory):
-        output.write(8 * b"\0")
-        for file in files:
-            file_info = dict()
-            file_path = os.path.join(root, file)
-            with open(file_path, "rb") as file_stream:
-                file_content = file_stream.read()
-                file_info["size"] = len(file_content)
-                pad_size = 16 - (len(file_content) % 16)
-                if pad_size % 16:
-                    file_content += pad_size * b"?"
-                file_info["data"] = file_content
+    output.write(8 * b"\0")
+    for file in file_names:
+        file_info = dict()
+        file_path = os.path.join(directory, os.path.normpath(file))
+        with open(file_path, "rb") as file_stream:
+            file_content = file_stream.read()
+            file_info["size"] = len(file_content)
+            pad_size = 16 - (len(file_content) % 16)
+            if pad_size % 16:
+                file_content += pad_size * b"?"
+            file_info["data"] = file_content
 
-            file_name = (
-                file_path[len(directory) + 1 :]
-                .replace("/", ":")
-                .replace("\\", ":")
-                .encode("utf-8")
-            )
-            file_name += b"\0"
-            pad_size = 8 - (len(file_name) % 8)
-            if pad_size % 8:
-                file_name += pad_size * b"?"
-            file_info["name"] = file_name
-            file_name_size += len(file_name)
+        file_name = (
+            file_path[len(directory) + 1 :]
+            .replace("/", ":")
+            .replace("\\", ":")
+            .encode("utf-8")
+        )
+        file_name += b"\0"
+        pad_size = 8 - (len(file_name) % 8)
+        if pad_size % 8:
+            file_name += pad_size * b"?"
+        file_info["name"] = file_name
+        file_name_size += len(file_name)
 
-            file_infos.append(file_info)
+        file_infos.append(file_info)
 
     header_size = file_name_size + 24 * len(file_infos)
     while (header_size + 8) % 16:
@@ -113,12 +121,8 @@ def pack(directory: str) -> bytes:
     return output.read()
 
 
-def packtofile(directory: str, outputfile: str) -> None:
+def packtofile(directory: str, outputfile: str, file_list="file_list.txt") -> None:
     if os.path.dirname(outputfile):
         os.makedirs(os.path.dirname(outputfile), exist_ok=True)
     with open(outputfile, "wb") as archive:
-        archive.write(pack(directory))
-
-
-if __name__ == '__main__':
-    unpackfile('data.pak', 'data')
+        archive.write(pack(directory, file_list))
