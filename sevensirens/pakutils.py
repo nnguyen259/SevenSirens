@@ -1,13 +1,12 @@
 import os
 from io import BytesIO
-from typing import Optional
 
 
-def unpack(data: bytes, out_directory: Optional[str]) -> None:
+def unpack(data: bytes, out_directory=".") -> None:
     _unpack(BytesIO(data), out_directory)
 
 
-def unpackfile(file: str, out_directory: Optional[str]) -> None:
+def unpackfile(file: str, out_directory=".") -> None:
     if not os.path.isfile(file):
         raise FileNotFoundError("Please specify a valid file to unpack.")
 
@@ -17,9 +16,7 @@ def unpackfile(file: str, out_directory: Optional[str]) -> None:
         )
 
 
-def _unpack(
-    data: BytesIO, out_directory: Optional[str], file_list_name="file_list.txt"
-) -> None:
+def _unpack(data: BytesIO, out_directory=".", file_list_name="file_list.txt") -> None:
     data_offset = int.from_bytes(data.read(4), "little")
     file_count = int.from_bytes(data.read(4), "little")
     file_names = list()
