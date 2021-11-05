@@ -29,7 +29,7 @@ area ArenaTown:
     # add in other pickups plus item shop
   
     conn IslandWest.Windmill:
-      casual: Newt OR Octo
+      casual: Newt OR Octo OR Tortoise
 
     conn IslandWest.SaveRoom:
       casual: free
