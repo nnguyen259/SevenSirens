@@ -5,46 +5,152 @@
 # Pickups are the tasty loot we're looking for, list any skills needed to obtain it
 # Connections let the logic move from one location to another, listing any skills needed
 # Connections are always one-way, there will be another connection going from the second anchor to the first, with possibly different skills needed
-# Casual is our first logic difficulty, there may be more to come
+# Standard is our first logic difficulty, there may be more to come
 # Resources: Nugget and Gem costs are written as 5n or 100g respectively
 # Skills: Newt, Drill, Tortoise, Frog, Octo, Seer, Refresh, Shock, Quake
 # skills should be separated by commas, order does not matter, however, ORs should always be at the end of the line
 # ORs should only handle one skill, if a combination of skills is needed instead, use a new line
 # We will handle potential damage boosts later, for now assume you can either get through any enemies damageless with only hair whip, or have enough food to tank it
+# For short poison water swims, note how much damage it takes, if possible
 
 area ArenaTown:
 
-  anchor ArenaTown.TownCentre at U3:
+  anchor ArenaTown.TownCentre: #at U3
 
     state ArenaTown.FlyingTeleporter:
-      casual: IslandWest.RightTowerDestroyed, IslandWest.LeftTowerDestroyed, IslandEast.RightTowerDestroyed, IslandEast.LeftTowerDestroyed
+      standard: IslandWest.RightTowerDestroyed, IslandWest.LeftTowerDestroyed, IslandEast.RightTowerDestroyed, IslandEast.LeftTowerDestroyed
       # might change this up later, but we'll stick with vanilla for now
 
     pickup ArenaTown.TinkerLady:
-      casual: SmoothBarnacle, LumpyBarnacle
-
+      standard: SmoothBarnacle, LumpyBarnacle
     pickup ArenaTown.ZombieCard:
-      casual: 7n
+      standard: 7n
+	pickup ArenaTown.OtakuCard:
+	  standard: 5n
+	pickup ArenaTown.FloorToast:
+	  standard: Codebook
+	pickup ArenaTown.Plink:
+	  standard: FusionStone
+	pickup ArenaTown.FriendChecklist:
+	  standard: free # pickup might be skipped entirely due to prologue
 
-    # add in other pickups plus item shop
+    # add item shop
   
     conn IslandWest.Windmill:
-      casual: Newt OR Octo
-
+      standard: newt OR octo OR tortoise
     conn IslandWest.SaveRoom:
-      casual: free
-
+      standard: free
     conn TourRoute.Entrance:
-      casual: free
-
+      standard: free
     conn IslandEast.LeftWindmill:
-      casual: free
+      standard: free
 
 area IslandWest:
 
-  anchor IslandWest.Windmill:
+  anchor IslandWest.Windmill: #at M3
 
-    # add pickups and connections
+    pickup IslandWest.GoldWindmill:
+      standard: shock
+	  
+	conn ArenaTown.Centre:
+	  standard: newt OR octo OR tortoise
+	conn IslandWest.RightTower:
+	  standard: octo
+	conn IslandWest.BoloHut:
+	  standard: free
+	  
+  anchor IslandWest.RightTower: #at N0
+	  
+	pickup IslandWest.SwordStatue:
+	  standard: quake
+	  
+	conn IslandWest.Windmill:
+	  standard: free
+	  
+  anchor IslandWest.BoloHut: #at I3
+    
+	pickup BoloFlower:
+	  standard: refresh
+	pickup BoloTrash:
+	pickup BoloStatue:
+	  standard: 
+	    quake, octo # redundant path from tower
+	    quake, newt, shock
+	
+	conn IslandWest.Windmill:
+	  standard: octo OR newt OR tortoise # can use a damage boost doublejump
+	conn IslandWest.LeftTower:
+	  standard: octo
 
+  anchor IslandWest.LeftTower: #at H0
+  
+    pickup IslandWest.BoloStatue:
+	  standard: quake
+	pickup IslandWest.TowerChest:
+	  standard: seer
+	
+	conn IslandWest.BoloHut:
+	  standard: free
+	  
+  anchor IslandWest.SaveRoom: #at P5
+  
+    pickup IslandWest.CaveRight:
+	  standard: newt OR octo # test octo without having newt
+	pickup IslandWest.FreeChest:
+	  standard: free
+	  
+	conn ArenaTown.Centre:
+	  standard: free
+	conn IslandWest.KeyHatch:
+	  standard: free
+  
+  anchor IslandWest.KeyHatch: #at L5
+  
+    state IslandWest.HatchOpen:
+	  standard: UselessObject
+	  
+    pickup IslandWest.CaveCentre:
+	  standard: drill
+	
+	conn IslandWest.SaveRoom:
+	  standard: free
+	conn TreeTown.Centre:
+	  standard: octo OR seer # can also be done with newt and dash distance card
+	conn MossyBiome.Scientist:
+	  standard: IslandWest.HatchOpen
+  
+  anchor TreeTown.Centre: #at B5
+
+    pickup TreeTown.BoloSnack:
+	  standard: MelbaToast
+	pickup TreeTown.Vera:
+	  standard: LuckyAmulet # may change into fusion stone later
+	pickup TreeTown.DanceGame:
+	  standard: 100g # decided to be nice, cost depends on how good you are
+	pickup TreeTown.ChiefKey:
+	  standard: free # need to play dance game once
+	pickup TreeTown.ChiefCard:
+	  standard: 10n
+	pickup TreeTown.HappyChief:
+	  standard: CoralMine.VeraSaved
+	pickup TreeTown.SnakeGirlCard:
+	  standard: 5n
+	pickup TreeTown.BathCard:
+	  standard: 8n
+	  
+    pickup IslandWest.CaveLeft:
+	  standard: frog
+	pickup IslandWest.TreeTownFlower:
+	  standard: refresh
+	pickup IslandWest.TreeTownStatue:
+	  standard: quake
+	  
+	#todo add shop contents
+
+	conn IslandWest.KeyHatch:
+	  standard: free
+	conn MiningSite.OutsideUpperCave:
+	  standard: frog, quake
+	  
 
   #Todo list out all areas and anchors
