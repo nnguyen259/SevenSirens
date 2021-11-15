@@ -25,14 +25,14 @@ area ArenaTown:
       standard: SmoothBarnacle, LumpyBarnacle
     pickup ArenaTown.ZombieCard:
       standard: 7n
-	pickup ArenaTown.OtakuCard:
-	  standard: 5n
-	pickup ArenaTown.FloorToast:
-	  standard: Codebook
-	pickup ArenaTown.Plink:
-	  standard: FusionStone
-	pickup ArenaTown.FriendChecklist:
-	  standard: free # pickup might be skipped entirely due to prologue
+    pickup ArenaTown.OtakuCard:
+      standard: 5n
+    pickup ArenaTown.FloorToast:
+      standard: Codebook
+    pickup ArenaTown.PlinkDance:
+      standard: FusionStone
+    pickup ArenaTown.FriendChecklist:
+      standard: free # pickup might be skipped entirely due to prologue
 
     # add item shop
   
@@ -51,107 +51,234 @@ area IslandWest:
 
     pickup IslandWest.GoldWindmill:
       standard: shock
-	  
-	conn ArenaTown.Centre:
-	  standard: newt OR octo OR tortoise
-	conn IslandWest.RightTower:
-	  standard: octo
-	conn IslandWest.BoloHut:
-	  standard: free
-	  
+  
+    conn ArenaTown.Centre:
+      standard: newt OR octo OR tortoise
+    conn IslandWest.RightTower:
+      standard: octo
+    conn IslandWest.BoloHut:
+      standard: free
+
   anchor IslandWest.RightTower: #at N0
-	  
-	pickup IslandWest.SwordStatue:
-	  standard: quake
-	  
-	conn IslandWest.Windmill:
-	  standard: free
-	  
+  
+    pickup IslandWest.SwordStatue:
+      standard: quake
+
+    conn IslandWest.Windmill:
+      standard: free
+  
   anchor IslandWest.BoloHut: #at I3
     
-	pickup BoloFlower:
-	  standard: refresh
-	pickup BoloTrash:
-	  standard: free
-	pickup BoloStatue:
-	  standard: 
-	    quake, octo # redundant path from tower
-	    quake, newt, shock
-	
-	conn IslandWest.Windmill:
-	  standard: octo OR newt OR tortoise # can use a damage boost doublejump
-	conn IslandWest.LeftTower:
-	  standard: octo
+    pickup BoloFlower:
+      standard: refresh
+    pickup BoloTrash:
+      standard: free
+    pickup BoloStatue:
+      standard: 
+        quake, octo # redundant path from tower
+        quake, newt, shock
+
+    conn IslandWest.Windmill:
+      standard: octo OR newt OR tortoise # can use a damage boost doublejump
+    conn IslandWest.LeftTower:
+      standard: octo
 
   anchor IslandWest.LeftTower: #at H0
   
     pickup IslandWest.BoloStatue:
-	  standard: quake
-	pickup IslandWest.TowerChest:
-	  standard: seer
-	
-	conn IslandWest.BoloHut:
-	  standard: free
-	  
+      standard: quake
+    pickup IslandWest.TowerChest:
+      standard: seer
+
+    conn IslandWest.BoloHut:
+      standard: free
+
   anchor IslandWest.SaveRoom: #at P5
   
     pickup IslandWest.CaveRight:
-	  standard: newt OR octo # test octo without having newt
-	pickup IslandWest.FreeChest:
-	  standard: free
-	  
-	conn ArenaTown.Centre:
-	  standard: free
-	conn IslandWest.KeyHatch:
-	  standard: free
-  
+      standard: newt OR octo # test octo without having newt
+    pickup IslandWest.FreeChest:
+      standard: free
+
+    conn ArenaTown.Centre:
+      standard: free
+    conn IslandWest.KeyHatch:
+      standard: free
+
   anchor IslandWest.KeyHatch: #at L5
   
     state IslandWest.HatchOpen:
-	  standard: UselessObject
-	  
+      standard: UselessObject
+
     pickup IslandWest.CaveCentre:
-	  standard: drill
-	
-	conn IslandWest.SaveRoom:
-	  standard: free
-	conn TreeTown.Centre:
-	  standard: octo OR seer # can also be done with newt and dash distance card
-	conn MossyBiome.Scientist:
-	  standard: IslandWest.HatchOpen
+      standard: drill
+
+    conn IslandWest.SaveRoom:
+      standard: free
+    conn TreeTown.Centre:
+      standard: octo OR seer # can also be done with newt, dash distance card
+    conn MossyBiome.Scientist:
+      standard: IslandWest.HatchOpen
   
   anchor TreeTown.Centre: #at B5
 
-    pickup TreeTown.BoloSnack:
-	  standard: MelbaToast
-	pickup TreeTown.Vera:
-	  standard: LuckyAmulet # may change into fusion stone later
-	pickup TreeTown.DanceGame:
-	  standard: 100g # decided to be nice, cost depends on how good you are
-	pickup TreeTown.ChiefKey:
-	  standard: free # need to play dance game once
-	pickup TreeTown.ChiefCard:
-	  standard: 10n
-	pickup TreeTown.HappyChief:
-	  standard: CoralMine.VeraSaved
-	pickup TreeTown.SnakeGirlCard:
-	  standard: 5n
-	pickup TreeTown.BathCard:
-	  standard: 8n
-	  
     pickup IslandWest.CaveLeft:
-	  standard: frog
-	pickup IslandWest.TreeTownFlower:
-	  standard: refresh
-	pickup IslandWest.TreeTownStatue:
-	  standard: quake
-	  
-	#todo add shop contents
+      standard: frog
+    pickup IslandWest.TreeTownFlower:
+      standard: refresh
+    pickup IslandWest.TreeTownStatue:
+      standard: quake
 
-	conn IslandWest.KeyHatch:
-	  standard: free
-	conn MiningSite.OutsideUpperCave:
-	  standard: frog, quake
-	  
+    pickup TreeTown.BoloSnack:
+      standard: MelbaToast
+    pickup TreeTown.VeraDance:
+      standard: LuckyAmulet # may change into fusion stone later
+    pickup TreeTown.DanceGame:
+      standard: 100g # perfect dance game, decided to be nice, cost depends on how good you are
+    pickup TreeTown.ChiefKey:
+      standard: 20g # cost is to play dance game once
+    pickup TreeTown.ChiefCard:
+      standard: 10n
+    pickup TreeTown.HappyChief:
+      standard: CoralMine.VeraSaved
+    pickup TreeTown.SnakeGirlCard:
+      standard: 5n
+    pickup TreeTown.BathCard:
+      standard: 8n
 
-  #Todo list out all areas and anchors
+  	pickup TreeTown.ShopFire1:
+      standard: 25g
+    pickup TreeTown.ShopFire2:
+      standard: 75g, ShopFire1
+    pickup TreeTown.ShopFire3:
+      standard: 75g, ShopFire2
+    pickup TreeTown.ShopPike1:
+      standard: 30g
+    pickup TreeTown.ShopPike2:
+      standard: 100g, ShopPike1
+    pickup TreeTown.ShopPike3:
+      standard: 300g, ShopPike2
+    pickup TreeTown.ShopBoomerang1:
+      standard: 50g
+    pickup TreeTown.ShopBoomerang2:
+      standard: 80g, ShopBoomerang1
+    pickup TreeTown.ShopBoomerang3:
+      standard: 350g, ShopBoomerang2
+    pickup TreeTown.ShopRocket1:
+      standard: 100g
+    pickup TreeTown.ShopRocket2:
+      standard: 150g, ShopRocket1
+    pickup TreeTown.ShopRocket3:
+      standard: 350g, ShopRocket2
+    pickup TreeTown.ShopSuper2:
+      standard: 80g, ShopSuper1
+    pickup TreeTown.ShopBubble1:
+      standard: 50g
+    pickup TreeTown.ShopBubble2:
+      standard: 100g, ShopBubble1
+    pickup TreeTown.ShopBubble3:
+      standard: 300g, ShopBubble2
+    pickup TreeTown.ShopMP:
+      standard: 300g # fill in other requirements once rediscovered
+    pickup TreeTown.ShopAttract1:
+      standard: 75g
+    pickup TreeTown.ShopAttract2:
+      standard: 75g, ShopAttract1
+    pickup TreeTown.ShopAttract3:
+      standard: 75g, ShopAttract2
+    pickup TreeTown.ShopCream1:
+      standard: 100g
+    pickup TreeTown.ShopCream2:
+      standard: 200g, ShopCream1
+    pickup TreeTown.ShopCream3:
+      standard: 300g, ShopCream2
+    pickup TreeTown.ShopShampoo1:
+      standard: 100g
+    pickup TreeTown.ShopShampoo2:
+      standard: 200g, ShopShampoo1
+    pickup TreeTown.ShopShampoo3:
+      standard: 300g, ShopShampoo2
+
+
+    conn IslandWest.KeyHatch:
+      standard: free
+    conn MiningSite.OutsideUpperCave:
+      standard: frog, quake
+
+
+area ArmorTown:
+
+  anchor ArmorTown.Centre: #at AJ1
+
+    pickup ArmorTown.DressUpCard:
+      standard: 6n
+    pickup ArmorTown.MeetBaron:
+      standard: free
+    pickup ArmorTown.BaronShakedown:
+      standard: ServiceArea.BaronHideout # complete gauntlet
+    pickup ArmorTown.BaronCard:
+      standard: 9n
+    pickup ArmorTown.DollGirl:
+      standard: DroolDoll
+    pickup ArmorTown.DollBoy:
+      standard: BransonDoll
+    pickup ArmorTown.DollMan:
+      standard: ManlyDoll
+    pickup ArmorTown.ZappleDance:
+      standard: FusionStone
+
+  	pickup ArmorTown.ShopFire1:
+      standard: 25g
+    pickup ArmorTown.ShopFire2:
+      standard: 75g, ShopFire1
+    pickup ArmorTown.ShopFire3:
+      standard: 75g, ShopFire2
+    pickup ArmorTown.ShopPike1:
+      standard: 30g
+    pickup ArmorTown.ShopPike2:
+      standard: 100g, ShopPoke1
+    pickup ArmorTown.ShopPike3:
+      standard: 300g, ShopPike2
+    pickup ArmorTown.ShopRocket1:
+      standard: 100g
+    pickup ArmorTown.ShopRocket2:
+      standard: 150g, ShopRocket1
+    pickup ArmorTown.ShopRocket3:
+      standard: 350g, ShopRocket2
+    pickup ArmorTown.ShopSuper3:
+      standard: 100g, ShopSuper2
+    pickup ArmorTown.ShopBubble1:
+      standard: 50g
+    pickup ArmorTown.ShopBubble2:
+      standard: 100g, ShopBubble1
+    pickup ArmorTown.ShopBubble3:
+      standard: 300g, ShopBubble2
+    pickup ArmorTown.ShopMP:
+      standard: 300g # fill in other requirements once rediscovered
+    pickup ArmorTown.ShopHP:
+      standard: 200g
+    pickup ArmorTown.ShopAttract1:
+      standard: 75g
+    pickup ArmorTown.ShopAttract2:
+      standard: 75g, ShopAttract1
+    pickup ArmorTown.ShopAttract3:
+      standard: 75g, ShopAttract2
+    pickup ArmorTown.ShopCream1:
+      standard: 100g
+    pickup ArmorTown.ShopCream2:
+      standard: 200g, ShopCream1
+    pickup ArmorTown.ShopCream3:
+      standard: 300g, ShopCream2
+    pickup ArmorTown.ShopShampoo1:
+      standard: 100g
+    pickup ArmorTown.ShopShampoo2:
+      standard: 200g, ShopShampoo1
+    pickup ArmorTown.ShopShampoo3:
+      standard: 300g, ShopShampoo2
+
+    conn IslandEast.Cliff:
+      standard: tortoise
+    conn IslandEast.RightTower:
+      standard: octo
+
+  #Todo list out all areas, anchors
