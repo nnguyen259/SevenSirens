@@ -74,9 +74,7 @@ area IslandWest:
     pickup BoloTrash:
       standard: free
     pickup BoloStatue:
-      standard: 
-        quake, octo # redundant path from tower
-        quake, newt, shock
+      standard: quake, newt, shock
 
     conn IslandWest.Windmill:
       standard: octo OR newt OR tortoise # can use a damage boost doublejump
@@ -205,6 +203,111 @@ area IslandWest:
     conn MiningSite.OutsideUpperCave:
       standard: frog, quake
 
+area IslandEast:
+
+  anchor IslandEast.LeftWindmill: #at Z3
+  
+    pickup IslandEast.LeftWindmillSand:
+      standard: shock
+    
+    conn ArenaTown.Centre:
+      standard: free
+    conn IslandEast.LeftTower:
+      standard: newt, octo
+    conn IslandEast.Cliff:
+      standard: free
+      
+  anchor IslandEast.LeftTower: #at AA0
+  
+    pickup IslandEast.UpperTowerStatue:
+      standard: quake
+    pickup IslandEast.LowerTowerStatue:
+      standard: quake
+    
+    conn IslandEast.LeftWindmill:
+      standard: free
+      
+  anchor IslandEast.Cliff: #at AD3
+  
+    pickup IslandEast.FlowerCentre:
+      standard: refresh
+    
+    conn IslandEast.LeftWindmill:
+      standard: free
+    conn IslandEast.UpperWindmill:
+      standard: tortoise
+    conn IslandEast.BombHatch:
+      standard: free
+      
+  anchor IslandEast.UpperWindmill: #at AG1
+
+    pickup IslandEast.UpperWindmillSand:
+      standard: shock
+    pickup IslandEast.LayingStatue: 
+      standard: quake
+    pickup IslandEast.FlowerUpperRight:
+      standard: refresh
+    pickup IslandEast.CaveChest:
+      standard:
+        quake, newt
+        octo
+   
+    conn IslandEast.Cliff: 
+      standard: tortoise
+    conn IslandEast.RightTower:
+      standard: octo
+    conn ArmorTown.Centre:
+      standard: free
+      
+  anchor IslandEast.RightTower: #at AH0
+    
+    conn IslandEast.UpperWindmill:
+      standard: free
+
+  anchor IslandEast.SaveRoom: #at Z5
+    
+    pickup IslandEast.OpenChest:
+      standard: free
+    pickup IslandEast.FlowerLowerLeft:
+      standard: refresh
+    pickup IslandEast.CaveLeft:
+      standard: free
+      
+    conn IslandEast.BombHatch:
+      standard: free
+
+  anchor IslandEast.BombHatch: #at AF5
+  
+    pickup IslandEast.BrokenWindmillSand:
+      standard: NutsBolts, shock
+  
+    conn IslandEast.Cliff:
+      standard: free
+    conn IslandEast.SaveRoom:
+      standard: free
+    conn IslandEast.Dock:
+      standard: octo OR newt
+    conn ServiceArea.WarpRoom:
+      standard: free
+
+  anchor IslandEast.Dock: #at AK5
+  
+    state IslandEast.MetalFishUnlocked:
+      standard: refresh
+  
+    pickup IslandEast.CaveRight:
+      standard: seer OR octo
+    pickup IslandEast.OpenOnWall:
+      standard: free
+    pickup IslandEast.DockItem:
+      standard: free
+  
+    conn IslandEast.BombHatch:
+      standard: free
+    conn Laboratory.SaveRoom:
+      standard: IslandEast.MetalFishUnlocked 
+    conn ServiceArea.SBend:
+      standard: frog
 
 area ArmorTown:
 
@@ -213,13 +316,13 @@ area ArmorTown:
     pickup ArmorTown.DressUpCard:
       standard: 6n
     pickup ArmorTown.MeetBaron:
-      standard: free
+      standard: newt OR tortoise OR octo
     pickup ArmorTown.BaronShakedown:
-      standard: ServiceArea.BaronHideout # complete gauntlet
+      standard: ServiceArea.BaronAlarm, newt OR tortoise OR octo # complete gauntlet
     pickup ArmorTown.BaronCard:
-      standard: 9n
+      standard: 9n, newt OR tortoise OR octo
     pickup ArmorTown.DollGirl:
-      standard: DroolDoll
+      standard: DroolDoll, newt OR tortoise OR octo
     pickup ArmorTown.DollBoy:
       standard: BransonDoll
     pickup ArmorTown.DollMan:
@@ -228,57 +331,56 @@ area ArmorTown:
       standard: FusionStone
 
   	pickup ArmorTown.ShopFire1:
-      standard: 25g
+      standard: 25g, newt OR tortoise OR octo
     pickup ArmorTown.ShopFire2:
-      standard: 75g, ShopFire1
+      standard: 75g, ShopFire1, newt OR tortoise OR octo
     pickup ArmorTown.ShopFire3:
-      standard: 75g, ShopFire2
+      standard: 75g, ShopFire2, newt OR tortoise OR octo
     pickup ArmorTown.ShopPike1:
-      standard: 30g
+      standard: 30g, newt OR tortoise OR octo
     pickup ArmorTown.ShopPike2:
-      standard: 100g, ShopPoke1
+      standard: 100g, ShopPike1, newt OR tortoise OR octo
     pickup ArmorTown.ShopPike3:
-      standard: 300g, ShopPike2
+      standard: 300g, ShopPike2, newt OR tortoise OR octo
     pickup ArmorTown.ShopRocket1:
-      standard: 100g
+      standard: 100g, newt OR tortoise OR octo
     pickup ArmorTown.ShopRocket2:
-      standard: 150g, ShopRocket1
+      standard: 150g, ShopRocket1, newt OR tortoise OR octo
     pickup ArmorTown.ShopRocket3:
-      standard: 350g, ShopRocket2
+      standard: 350g, ShopRocket2, newt OR tortoise OR octo
     pickup ArmorTown.ShopSuper3:
-      standard: 100g, ShopSuper2
+      standard: 100g, ShopSuper2, newt OR tortoise OR octo
     pickup ArmorTown.ShopBubble1:
-      standard: 50g
+      standard: 50g, newt OR tortoise OR octo
     pickup ArmorTown.ShopBubble2:
-      standard: 100g, ShopBubble1
+      standard: 100g, ShopBubble1, newt OR tortoise OR octo
     pickup ArmorTown.ShopBubble3:
-      standard: 300g, ShopBubble2
+      standard: 300g, ShopBubble2, newt OR tortoise OR octo
     pickup ArmorTown.ShopMP:
-      standard: 300g # fill in other requirements once rediscovered
+      standard: 300g, newt OR tortoise OR octo # fill in other requirements once rediscovered
     pickup ArmorTown.ShopHP:
-      standard: 200g
+      standard: 200g, newt OR tortoise OR octo
     pickup ArmorTown.ShopAttract1:
-      standard: 75g
+      standard: 75g, newt OR tortoise OR octo
     pickup ArmorTown.ShopAttract2:
-      standard: 75g, ShopAttract1
+      standard: 75g, ShopAttract1, newt OR tortoise OR octo
     pickup ArmorTown.ShopAttract3:
-      standard: 75g, ShopAttract2
+      standard: 75g, ShopAttract2, newt OR tortoise OR octo
     pickup ArmorTown.ShopCream1:
-      standard: 100g
+      standard: 100g, newt OR tortoise OR octo
     pickup ArmorTown.ShopCream2:
-      standard: 200g, ShopCream1
+      standard: 200g, ShopCream1, newt OR tortoise OR octo
     pickup ArmorTown.ShopCream3:
-      standard: 300g, ShopCream2
+      standard: 300g, ShopCream2, newt OR tortoise OR octo
     pickup ArmorTown.ShopShampoo1:
-      standard: 100g
+      standard: 100g, newt OR tortoise OR octo
     pickup ArmorTown.ShopShampoo2:
-      standard: 200g, ShopShampoo1
+      standard: 200g, ShopShampoo1, newt OR tortoise OR octo
     pickup ArmorTown.ShopShampoo3:
-      standard: 300g, ShopShampoo2
+      standard: 300g, ShopShampoo2, newt OR tortoise OR octo
 
-    conn IslandEast.Cliff:
-      standard: tortoise
-    conn IslandEast.RightTower:
-      standard: octo
+    conn IslandEast.UpperWindmill:
+      standard: free
 
   #Todo list out all areas, anchors
+  #todo figure out warp rooms
