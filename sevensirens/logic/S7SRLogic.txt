@@ -7,7 +7,7 @@
 # Connections are always one-way, there will be another connection going from the second anchor to the first, with possibly different skills needed
 # Standard is our first logic difficulty, there may be more to come
 # Resources: Nugget and Gem costs are written as 5n or 100g respectively
-# Skills: Newt, Drill, Tortoise, Frog, Octo, Seer, Refresh, Shock, Quake
+# Skills: newt, drill, tortoise, frog, octo, seer, refresh, spark, quake
 # skills should be separated by commas, order does not matter, however, ORs should always be at the end of the line
 # ORs should only handle one skill, if a combination of skills is needed instead, use a new line
 # We will handle potential damage boosts later, for now assume you can either get through any enemies damageless with only hair whip, or have enough food to tank it
@@ -34,7 +34,50 @@ area ArenaTown:
     pickup ArenaTown.FriendChecklist:
       standard: free # pickup might be skipped entirely due to prologue
 
-    # add item shop
+    pickup ArenaTown.ShopFire1:
+      standard: 25g
+    pickup ArenaTown.ShopFire2:
+      standard: 75g, ShopFire1
+    pickup ArenaTown.ShopFire3:
+      standard: 75g, ShopFire2
+    pickup ArenaTown.ShopPike1:
+      standard: 30g
+    pickup ArenaTown.ShopPike2:
+      standard: 100g, ShopPike1
+    pickup ArenaTown.ShopPike3:
+      standard: 300g, ShopPike2
+    pickup ArenaTown.ShopRocket1:
+      standard: 100g
+    pickup ArenaTown.ShopRocket2:
+      standard: 150g, ShopRocket1
+    pickup ArenaTown.ShopRocket3:
+      standard: 350g, ShopRocket2
+    pickup ArenaTown.ShopSuper1:
+      standard: 45g
+    pickup ArenaTown.ShopBubble1:
+      standard: 50g
+    pickup ArenaTown.ShopBubble2:
+      standard: 100g, ShopBubble1
+    pickup ArenaTown.ShopBubble3:
+      standard: 300g, ShopBubble2
+    pickup ArenaTown.ShopAttract1:
+      standard: 75g
+    pickup ArenaTown.ShopAttract2:
+      standard: 75g, ShopAttract1
+    pickup ArenaTown.ShopAttract3:
+      standard: 75g, ShopAttract2
+    pickup ArenaTown.ShopCream1:
+      standard: 100g
+    pickup ArenaTown.ShopCream2:
+      standard: 200g, ShopCream1
+    pickup ArenaTown.ShopCream3:
+      standard: 300g, ShopCream2
+    pickup ArenaTown.ShopShampoo1:
+      standard: 100g
+    pickup ArenaTown.ShopShampoo2:
+      standard: 200g, ShopShampoo1
+    pickup ArenaTown.ShopShampoo3:
+      standard: 300g, ShopShampoo2
   
     conn IslandWest.Windmill:
       standard: newt OR octo OR tortoise
@@ -50,7 +93,7 @@ area IslandWest:
   anchor IslandWest.Windmill: #at M3
 
     pickup IslandWest.GoldWindmill:
-      standard: shock
+      standard: spark
   
     conn ArenaTown.Centre:
       standard: newt OR octo OR tortoise
@@ -74,7 +117,7 @@ area IslandWest:
     pickup BoloTrash:
       standard: free
     pickup BoloStatue:
-      standard: quake, newt, shock
+      standard: quake, newt, spark
 
     conn IslandWest.Windmill:
       standard: octo OR newt OR tortoise # can use a damage boost doublejump
@@ -197,7 +240,6 @@ area IslandWest:
     pickup TreeTown.ShopShampoo3:
       standard: 300g, ShopShampoo2
 
-
     conn IslandWest.KeyHatch:
       standard: free
     conn MiningSite.OutsideUpperCave:
@@ -208,7 +250,7 @@ area IslandEast:
   anchor IslandEast.LeftWindmill: #at Z3
   
     pickup IslandEast.LeftWindmillSand:
-      standard: shock
+      standard: spark
     
     conn ArenaTown.Centre:
       standard: free
@@ -242,7 +284,7 @@ area IslandEast:
   anchor IslandEast.UpperWindmill: #at AG1
 
     pickup IslandEast.UpperWindmillSand:
-      standard: shock
+      standard: spark
     pickup IslandEast.LayingStatue: 
       standard: quake
     pickup IslandEast.FlowerUpperRight:
@@ -279,7 +321,7 @@ area IslandEast:
   anchor IslandEast.BombHatch: #at AF5
   
     pickup IslandEast.BrokenWindmillSand:
-      standard: NutsBolts, shock
+      standard: NutsBolts, spark
   
     conn IslandEast.Cliff:
       standard: free
@@ -357,7 +399,7 @@ area ArmorTown:
     pickup ArmorTown.ShopBubble3:
       standard: 300g, ShopBubble2, newt OR tortoise OR octo
     pickup ArmorTown.ShopMP:
-      standard: 300g, newt OR tortoise OR octo # fill in other requirements once rediscovered
+      standard: 300g, newt OR tortoise OR octo # fill in other requirements or leave out
     pickup ArmorTown.ShopHP:
       standard: 200g, newt OR tortoise OR octo
     pickup ArmorTown.ShopAttract1:
@@ -381,6 +423,132 @@ area ArmorTown:
 
     conn IslandEast.UpperWindmill:
       standard: free
+
+area Laboratory:
+
+  anchor Laboratory.SaveRoom: #at BL26
+  
+    pickup Laboratory.DagronGolem:
+      standard: refresh
+    pickup Laboratory.SaveRoomSparkPod:
+      standard: spark, newt OR tortoise OR octo
+    pickup Laboratory.LowerStatue:
+      standard: quake
+    
+    conn Laboratory.MuckmanRoom:
+      standard: free #recheck on new file, I don't trust this
+      
+  anchor Laboratory.MuckmanRoom: #at BD22
+  
+    pickup Laboratory.CentreStatue:
+      standard: quake
+    pickup Laboratory.MuckmanSparkPod:
+      standard: spark
+    pickup Laboratory.PoolSparkPod:
+      standard: frog, spark
+    pickup Laboratory.SeerPot:
+      standard: seer, octo
+      # hard: seer, newt
+      
+    conn Laboratory.SaveRoom:
+      standard: free
+    conn Laboratory.ToDeepSeaLower:
+      standard: free
+    conn Laboratory.WarpRoom:
+      standard: newt OR octo
+    
+  anchor Laboratory.ToDeepSeaLower: # at BB26
+  
+    pickup Laboratory.DagronBatgirl:
+      standard: refresh
+    pickup Laboratory.SeerPot:
+      standard: seer, octo
+      # hard: seer, newt
+    pickup Laboratory.WaterOpenBB22:
+      standard: frog
+    pickup Laboratory.LeftChestBB21:
+      standard: frog
+    
+    conn Laboratory.MuckmanRoom:
+      standard: newt OR octo
+    conn DeepSea.WarpRoom:
+      standard: frog
+      
+  anchor Laboratory.WarpRoom: #at BG20
+  
+    state Laboratory.SquidDagronBallsBC20:
+      standard: 3DagronBall
+  
+    pickup Laboratory.DagronBallWetmanBH20:
+      standard: refresh
+    pickup Laboratory.StatueUpperLeftBF20:
+      standard: quake
+    pickup Laboratory.CaveBE20:
+      standard:
+        newt, tortoise OR octo
+        tortoise, octo
+        spark
+    pickup Laboratory.SeerChestBD19:
+      standard: drill, seer
+    pickup Laboratory.WaterMazeChestBJ19:
+      standard: frog
+    pickup Laboratory.ChestUpperRightBI15:
+      standard: frog
+      
+    conn Laboratory.SeaVent:
+      standard: Laboratory.SquidDagronBallsBC20
+    conn Laboratory.ToRoute:
+      standard: drill
+    conn Laboratory.ScientistRoom:
+      standard: frog, quake
+    conn ServiceArea.ToLaboratory:
+      standard: frog
+    conn ServiceArea.BaronBase:
+      standard: frog
+
+  anchor Laboratory.ScientistRoom: #at BL22
+  
+    pickup Laboratory.ScientistSparkPodBM22:
+      standard: spark
+    pickup Laboratory.ScientistBL22:
+      standard: quake, seer, newt OR octo
+      # hard: quake, seer, spark, tortoise
+      # hair whip needed to cancel tortoise, jump from very bottom of rope
+    pickup Laboratory.ScientistFlowerBK22:
+      standard: quake, seer, refresh, newt OR octo
+      # hard: quake, seer, refresh, spark, tortoise
+    
+    conn Laboratory.WarpRoom:
+      standard: quake, frog, newt OR octo
+      
+  anchor Laboratory.SeaVent: #at BB20
+  
+    pickup Laboratory.LeftChestBB21:
+      standard: tortoise
+  
+    conn Laboratory.WarpRoom:
+      standard: Laboratory.SquidDagronBallsBC20
+    conn Laboratory.ToDeepSeaLower:
+      standard: tortoise, frog
+      
+  anchor Laboratory.ToRoute: #at BB18
+  
+    pickup Laboratory.SparkPodUpperLeftBC18:
+      standard: spark
+    pickup Laboratory.SeerChestBD19:
+      standard: drill, seer
+    pickup Laboratory.FlowerLeftBA18:
+      standard: refresh
+    pickup DeepSea.FlowerUpperCentreAZ18:
+      standard: tortoise, refresh
+        
+    conn Laboratory.WarpRoom:
+      standard: drill
+    conn DeepSea.LavaDrips:
+      standard: tortoise, drill
+    conn TourRoute.SaveRoomRight:
+      standard: frog
+    
 
   #Todo list out all areas, anchors
   #todo figure out warp rooms
