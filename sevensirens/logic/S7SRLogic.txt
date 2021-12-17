@@ -6,7 +6,7 @@
 # Connections let the logic move from one location to another, listing any skills needed
 # Connections are always one-way, there will be another connection going from the second anchor to the first, with possibly different skills needed
 # Standard is our first logic difficulty, there may be more to come
-# Resources: Nugget and Gem costs are written as 5n or 100g respectively
+# Resources: Nugget, Gem, and Key costs are written as 5n, 100g or 1k respectively
 # Skills: newt, drill, tortoise, frog, octo, seer, refresh, spark, quake
 # skills should be separated by commas, order does not matter, however, ORs should always be at the end of the line
 # ORs should only handle one skill, if a combination of skills is needed instead, use a new line
@@ -701,6 +701,58 @@ area Laboratory:
       standard: tortoise, drill
     conn TourRoute.SaveRoomRight:
       standard: frog
+    
+area WaterLily:
+
+  anchor WaterLily.EntranceSaveRoom: #at CE04
+    
+    pickup KeyLeftCC06:
+      standard: free
+    pickup SquidUpperCF01:
+      standard: newt
+    pickup KeyUpperCE00:
+      standard: newt
+    
+    conn TourRoute.WaterLily:
+      standard: free
+    conn WaterLily.CentralSaveRoom:
+      standard: 1k
+    conn WaterLily.BossSaveRoom: 
+      standard: newt, 1k
+      
+  anchor WaterLily.CentralSaveRoom: #at CK05
+  
+    pickup SquidCentreCH04:
+      standard: newt OR octo
+    pickup KeyRightCK04:
+      standard: free
+    pickup SquidLowerCG06:
+      standard: newt OR octo
+    pickup MapChestCJ04:
+      standard: free
+      
+    conn WaterLily.RiskySaveRoom:
+      standard: 1k
+    conn WaterLily.EntranceSaveRoom:
+      standard: free
+      
+  anchor WaterLily.RiskySaveRoom: #at CN07
+    
+    pickup: PlinkCoinCG09 #softlock in this area without newt/octo
+      standard: free
+      
+    conn WaterLily.CentralSaveRoom:
+      standard: newt OR octo
+    conn WaterLily.EntranceSaveRoom:
+      standard: newt OR octo
+      
+  anchor WaterLily.BossSaveRoom: #at CC02
+  
+    state WaterLily.BossDefeated:
+      standard: newt OR octo #yes it'll never happen, but I'm being thorough :P
+
+    conn WaterLily.EntranceSaveRoom:
+      standard: free
     
 
   #Todo list out all areas, anchors
