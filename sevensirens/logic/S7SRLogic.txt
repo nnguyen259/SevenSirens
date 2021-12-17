@@ -12,6 +12,7 @@
 # ORs should only handle one skill, if a combination of skills is needed instead, use a new line
 # We will handle potential damage boosts later, for now assume you can either get through any enemies damageless with only hair whip, or have enough food to tank it
 # For short poison water swims, note how much damage it takes, if possible
+# we'll worry about beginner mode shenanagans later
 
 area ArenaTown:
 
