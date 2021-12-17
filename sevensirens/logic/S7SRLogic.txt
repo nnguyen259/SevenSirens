@@ -15,7 +15,7 @@
 
 area ArenaTown:
 
-  anchor ArenaTown.TownCentre: #at U3
+  anchor ArenaTown.TownCentre: #at AU03
 
     state ArenaTown.FlyingTeleporter:
       standard: IslandWest.RightTowerDestroyed, IslandWest.LeftTowerDestroyed, IslandEast.RightTowerDestroyed, IslandEast.LeftTowerDestroyed
@@ -90,7 +90,7 @@ area ArenaTown:
 
 area IslandWest:
 
-  anchor IslandWest.Windmill: #at M3
+  anchor IslandWest.Windmill: #at AM03
 
     pickup IslandWest.GoldWindmill:
       standard: spark
@@ -102,7 +102,7 @@ area IslandWest:
     conn IslandWest.BoloHut:
       standard: free
 
-  anchor IslandWest.RightTower: #at N0
+  anchor IslandWest.RightTower: #at AN00
   
     pickup IslandWest.SwordStatue:
       standard: quake
@@ -110,7 +110,7 @@ area IslandWest:
     conn IslandWest.Windmill:
       standard: free
   
-  anchor IslandWest.BoloHut: #at I3
+  anchor IslandWest.BoloHut: #at AI03
     
     pickup BoloFlower:
       standard: refresh
@@ -124,7 +124,7 @@ area IslandWest:
     conn IslandWest.LeftTower:
       standard: octo
 
-  anchor IslandWest.LeftTower: #at H0
+  anchor IslandWest.LeftTower: #at AH00
   
     pickup IslandWest.BoloStatue:
       standard: quake
@@ -134,7 +134,7 @@ area IslandWest:
     conn IslandWest.BoloHut:
       standard: free
 
-  anchor IslandWest.SaveRoom: #at P5
+  anchor IslandWest.SaveRoom: #at AP05
   
     pickup IslandWest.CaveRight:
       standard: newt OR octo # test octo without having newt
@@ -146,7 +146,7 @@ area IslandWest:
     conn IslandWest.KeyHatch:
       standard: free
 
-  anchor IslandWest.KeyHatch: #at L5
+  anchor IslandWest.KeyHatch: #at AL05
   
     state IslandWest.HatchOpen:
       standard: UselessObject
@@ -161,13 +161,13 @@ area IslandWest:
     conn MossyBiome.Scientist:
       standard: IslandWest.HatchOpen
   
-  anchor TreeTown.Centre: #at B5
+  anchor TreeTown.Centre: #at AB05
 
-    pickup IslandWest.CaveLeft:
+    pickup IslandWest.CaveLeftAC05:
       standard: frog
-    pickup IslandWest.TreeTownFlower:
+    pickup IslandWest.TreeTownFlowerAE05:
       standard: refresh
-    pickup IslandWest.TreeTownStatue:
+    pickup IslandWest.TreeTownStatueAG05:
       standard: quake
 
     pickup TreeTown.BoloSnack:
@@ -186,8 +186,8 @@ area IslandWest:
       standard: 5n
     pickup TreeTown.BathCard:
       standard: 8n
-
-  	pickup TreeTown.ShopFire1:
+      
+    pickup TreeTown.ShopFire1:
       standard: 25g
     pickup TreeTown.ShopFire2:
       standard: 75g, ShopFire1
@@ -247,9 +247,9 @@ area IslandWest:
 
 area IslandEast:
 
-  anchor IslandEast.LeftWindmill: #at Z3
+  anchor IslandEast.LeftWindmill: #at AZ03
   
-    pickup IslandEast.LeftWindmillSand:
+    pickup IslandEast.LeftWindmillSandAZ03:
       standard: spark
     
     conn ArenaTown.Centre:
@@ -259,19 +259,19 @@ area IslandEast:
     conn IslandEast.Cliff:
       standard: free
       
-  anchor IslandEast.LeftTower: #at AA0
+  anchor IslandEast.LeftTower: #at BA00
   
-    pickup IslandEast.UpperTowerStatue:
+    pickup IslandEast.UpperTowerStatueAZ00:
       standard: quake
-    pickup IslandEast.LowerTowerStatue:
+    pickup IslandEast.LowerTowerStatueAZ02:
       standard: quake
     
-    conn IslandEast.LeftWindmill:
+    conn IslandEast.LeftWindmillSandAZ03:
       standard: free
       
-  anchor IslandEast.Cliff: #at AD3
+  anchor IslandEast.Cliff: #at BD03
   
-    pickup IslandEast.FlowerCentre:
+    pickup IslandEast.FlowerCentreBD02:
       standard: refresh
     
     conn IslandEast.LeftWindmill:
@@ -281,15 +281,15 @@ area IslandEast:
     conn IslandEast.BombHatch:
       standard: free
       
-  anchor IslandEast.UpperWindmill: #at AG1
+  anchor IslandEast.UpperWindmill: #at BG01
 
-    pickup IslandEast.UpperWindmillSand:
+    pickup IslandEast.UpperWindmillSandBG01:
       standard: spark
-    pickup IslandEast.LayingStatue: 
+    pickup IslandEast.LayingStatueBF01: 
       standard: quake
-    pickup IslandEast.FlowerUpperRight:
+    pickup IslandEast.FlowerUpperRightBH01:
       standard: refresh
-    pickup IslandEast.CaveChest:
+    pickup IslandEast.CaveChestBF01:
       standard:
         quake, newt
         octo
@@ -301,26 +301,26 @@ area IslandEast:
     conn ArmorTown.Centre:
       standard: free
       
-  anchor IslandEast.RightTower: #at AH0
+  anchor IslandEast.RightTower: #at BH00
     
     conn IslandEast.UpperWindmill:
       standard: free
 
-  anchor IslandEast.SaveRoom: #at Z5
+  anchor IslandEast.SaveRoom: #at AZ05
     
-    pickup IslandEast.OpenChest:
+    pickup IslandEast.OpenChestBA05:
       standard: free
-    pickup IslandEast.FlowerLowerLeft:
+    pickup IslandEast.FlowerLowerLeftAX05:
       standard: refresh
-    pickup IslandEast.CaveLeft:
+    pickup IslandEast.CaveLeftAW05:
       standard: free
       
     conn IslandEast.BombHatch:
       standard: free
 
-  anchor IslandEast.BombHatch: #at AF5
+  anchor IslandEast.BombHatch: #at BF05
   
-    pickup IslandEast.BrokenWindmillSand:
+    pickup IslandEast.BrokenWindmillSandBE05:
       standard: NutsBolts, spark
   
     conn IslandEast.Cliff:
@@ -332,16 +332,16 @@ area IslandEast:
     conn ServiceArea.WarpRoom:
       standard: free
 
-  anchor IslandEast.Dock: #at AK5
+  anchor IslandEast.Dock: #at BK05
   
     state IslandEast.MetalFishUnlocked:
       standard: refresh
   
-    pickup IslandEast.CaveRight:
+    pickup IslandEast.CaveRightBI05:
       standard: seer OR octo
-    pickup IslandEast.OpenOnWall:
+    pickup IslandEast.OpenOnWallBG05:
       standard: free
-    pickup IslandEast.DockItem:
+    pickup IslandEast.DockItemBK05:
       standard: free
   
     conn IslandEast.BombHatch:
@@ -353,7 +353,7 @@ area IslandEast:
 
 area ArmorTown:
 
-  anchor ArmorTown.Centre: #at AJ1
+  anchor ArmorTown.Centre: #at BJ01
 
     pickup ArmorTown.DressUpCard:
       standard: 6n
@@ -424,6 +424,158 @@ area ArmorTown:
     conn IslandEast.UpperWindmill:
       standard: free
 
+area TourRoute:
+
+  anchor TourRoute.Entrance: #at AU08
+  
+    conn TourRoute.FindZapple:
+      standard: free
+    conn TourRoute.UnstableGround:
+      standard: newt OR octo OR tortoise #tortoise takes the right path
+    conn TourRoute.TPorthole:
+      standard: newt OR octo OR tortoise
+    conn ArenaTown.Centre:
+      standard: free
+
+  anchor TourRoute.FindZapple: #at AR10
+  
+    pickup TourRoute.UncleAR10:
+      standard: MossyBiome.CrankSpotAJ08
+      
+    conn TourRoute.Entrance:
+      standard: free
+    conn TourRoute.UnstableGround:
+      standard: newt OR octo #assuming ground already broken
+      
+  anchor TourRoute.TPorthole: #at AZ10
+
+    conn TourRoute.Entrance:
+      standard: newt OR octo
+    conn TourRoute.UnstableGround:
+      standard: free
+    conn IslandEast.BombHatch:
+      standard: frog, newt OR octo
+    conn ServiceArea.SaveRoom:
+      standard: free
+      
+  anchor TourRoute.UnstableGround: #at AU10
+  # assuming ground is already broken
+  
+    pickup TourRoute.HiddenChestAU11:
+      standard: seer, newt OR octo #confirm that octo only
+      # newt or octo needed regardless whether ground is broken to jump up into hidden alcove
+     
+    conn TourRoute.FallenGenie:
+      standard: free
+    conn TourRoute.FindZapple:
+      standard: free
+    conn TourRoute.Entrance:
+      standard: free
+    conn TourRoute.TPorthole:
+      standard: free
+      
+  anchor TourRoute.FallenGenie: #at AU13
+
+    conn TourRoute.UnstableGround:
+      standard: newt OR octo #confirm octo only
+    conn TourRoute.SaveRoomLeft:
+      standard: drill
+    conn TourRoute.ToDeepSea:
+      standard: free
+    conn TourRoute.NiceView:
+      standard: newt OR octo
+    
+  anchor TourRoute.SaveRoomLeft: #at AS15
+  
+    pickup TourRoute.FlowerLeftAT15:
+      standard: refresh
+    pickup MossyBiome.FlowerRightAR15:
+      standard: refresh
+    pickup MossyBiome.SparkPodRightAQ14:
+      standard: spark, octo OR newt OR tortoise
+    pickup MossyBiome.StompRightAR14:
+      standard: tortoise
+    # pickup MossyBiome.ScientistRevisitAR15: 
+    #   standard: free
+    
+    conn TourRoute.FallenGenie:
+      standard: drill
+    conn MossyBiome.WetmanRoom:
+      standard: drill
+    conn MossyBiome.SquidRoom:
+      standard: tortoise
+      
+  anchor TourRoute.ToDeepSea: #at AX16
+    
+    pickup TourRoute.ChestRightBB14: 
+      standard: newt OR octo
+    pickup TourRoute.FlowerRightBB16:
+      standard: refresh 
+    pickup TourRoute.RouteCaveAZ16:
+      standard: spark
+    # pickup TourRoute.TinkerLadyRevisitBB16:
+      # standard: free
+    
+    conn TourRoute.NiceView: #One-way through Control Room OR around
+      standard: newt OR octo
+    conn DeepSea.LavaDrips:
+      standard: frog
+    conn TourRoute.FallenGenie:
+      standard: free
+    conn TourRoute.SaveRoomRight:
+      standard: free
+    conn Laboratory.ToDeepSeaUpper:
+      standard: frog
+      
+  anchor TourRoute.NiceView: #at AZ14
+  
+    pickup TourRoute.ChestRightBB14:
+      standard: free
+    pickup TourRoute.FlowerRightBB16:
+      standard: refresh
+    pickup TourRoute.RouteCaveAZ16:
+      standard: spark
+    # pickup TourRoute.TinkerLadyRevisitBB16:
+      # standard: free
+
+    conn TourRoute.TPorhole:
+      standard: newt
+    conn TourRoute.ToDeepSea:
+      standard: free
+    conn TourRoute.SaveRoomRight:
+      standard: free
+    conn Laboratory.ToDeepSeaUpper:
+      standard: frog
+  
+  anchor TourRoute.SaveRoomRight: #at AD16
+  
+    pickup TourRoute.SeerPotBE16:
+      standard: seer
+    pickup TourRoute.ChestRightBB14:
+      standard: newt OR octo
+    pickup TourRoute.FlowerRightBB16:
+      standard: refresh 
+    pickup TourRoute.RouteCaveAZ16:
+      standard: spark
+    # pickup TourRoute.TinkerLadyRevisitBB16:
+      # standard: free
+
+    conn TourRoute.NiceView:
+      standard: newt OR octo
+    conn TourRoute.ToDeepSea:
+      standard: free
+    conn TourRoute.WaterLily:
+      standard: free
+    conn Laboratory.ToDeepSeaUpper:
+      standard: frog
+
+  anchor TourRoute.WaterLily: #at AG17  
+    
+    pickup TourRoute.SeerPotBE16:
+      standard: seer
+    conn TourRoute.SaveRoomRight:
+      standard: free
+ 
 area Laboratory:
 
   anchor Laboratory.SaveRoom: #at BL26
